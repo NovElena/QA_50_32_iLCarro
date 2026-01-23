@@ -1,21 +1,24 @@
 package ui_tests;
 
-import manager.AppManager;
+import dto.User;
+import manager.ApplicationManager;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
+import pages.LoginPage;
 
-public class LoginTests extends AppManager {
+public class LoginTests extends ApplicationManager {
     @Test
     public void loginPositiveTest(){
-        System.out.println("first test");
+        User user = User.builder()
+                .email("sima_simonova370@gmail.com")
+                .password("BSas124!")
+                .build();
         HomePage homePage = new HomePage(getDriver());
         homePage.clickBtnLogin();
-        homePage.fillFieldEmail();
-        homePage.fillFieldPassword();
-        homePage.clickBtnYalla();
-        homePage.clickBtnOk();
-        homePage.clickBtnLogout();
+        LoginPage loginPage = new LoginPage(getDriver());
+        loginPage.typeLoginForm(user);
+        loginPage.clickBtnYalla();
+        Assert.assertTrue(loginPage.isLoggedInDisplayed());
     }
-
-
 }
