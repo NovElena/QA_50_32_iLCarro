@@ -5,6 +5,7 @@ import manager.ApplicationManager;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.HomePage;
 import pages.PopUpPage;
 import pages.RegistrationPage;
@@ -47,4 +48,38 @@ public class RegistrationTests extends ApplicationManager {
         Assert.assertTrue(new PopUpPage(getDriver())
                 .isTextInPopUpMessagePresent("You are logged in success"));
     }
+
+    @Test
+    public void registrationNegativeTest_WrongEmail_WOAtSymbol(){
+        User user = User.builder()
+                .firstName("AAA")
+                .lastName("BBB")
+                .email("wrongEmail2@gmail.com")
+                .password("Password123!")
+                .build();
+        registrationPage.typeRegistrationForm(user);
+        registrationPage.clickCheckBox();
+        registrationPage.clickBtnYalla();
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(registrationPage.isTextInErrorPresent("Wrong email format"));
+        softAssert.assertAll();
+    }
+
+    @Test
+    public void registrationNegativeTest_WrongPassword_WOUpperCase(){
+        User user = User.builder()
+                .firstName("AAA")
+                .lastName("BBB")
+                .email("wrongEmail2@gmail.com")
+                .password("password123!")
+                .build();
+        registrationPage.typeRegistrationForm(user);
+        registrationPage.clickCheckBox();
+        registrationPage.clickBtnYalla();
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(registrationPage.isTextInErrorPresent("Password must contain 1 uppercase letter"));
+        softAssert.assertAll();
+
+    }
+
 }
