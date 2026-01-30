@@ -16,6 +16,7 @@ import static utils.UserFactory.*;
 
 public class RegistrationTests extends ApplicationManager {
     RegistrationPage registrationPage;
+    SoftAssert softAssert = new SoftAssert();
 
     @BeforeMethod
     public void goToRegistrationPage() {
@@ -108,6 +109,25 @@ public class RegistrationTests extends ApplicationManager {
         registrationPage.clickCheckBoxWithActions();
         registrationPage.clickBtnYalla();
         Assert.assertTrue(new PopUpPage(getDriver()).isTextInPopUpMessagePresent("Must not be blank"));
+
+    }
+    @Test
+    public void registrationNegativeTest_WithAllEmpty(){
+        User user = User.builder()
+                .firstName("")
+                .lastName("")
+                .email("")
+                .password("")
+                .build();
+        registrationPage.typeRegistrationForm(user);
+        registrationPage.setCheckBoxAgreeTermsOfUse();
+        registrationPage.clickBtnYalla();
+        softAssert.assertTrue(registrationPage.isTextInErrorPresent("Name is required"), "validate error message Name is required");
+        softAssert.assertTrue(registrationPage.isTextInErrorPresent("Last Name is required"), "validate error message Last Name is required");
+        softAssert.assertTrue(registrationPage.isTextInErrorPresent("Email is required"), "validate error message Email is required");
+        softAssert.assertTrue(registrationPage.isTextInErrorPresent("Password is required"), "validate error message Password is required");
+        softAssert.assertAll();
+
 
     }
 
