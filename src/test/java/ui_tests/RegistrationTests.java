@@ -82,4 +82,35 @@ public class RegistrationTests extends ApplicationManager {
 
     }
 
+    @Test
+    public void registrationNegativeTest_UserAlreadyExists(){
+        User user = User.builder()
+                .firstName("uhifg")
+                .lastName("dhfgsh")
+                .email("123qwe@gmail.com")
+                .password("123Qwerty!")
+                .build();
+        registrationPage.typeRegistrationForm(user);
+        registrationPage.clickCheckBoxWithActions();
+        registrationPage.clickBtnYalla();
+        Assert.assertTrue(new PopUpPage(getDriver()).isTextInPopUpMessagePresent("User already exists"));
+
+    }
+    @Test
+    public void registrationNegativeTest_WithSpaceInFirstName(){
+        User user = User.builder()
+                .firstName(" ")
+                .lastName("dhfgsh")
+                .email("123qwe@gmail.com")
+                .password("123Qwerty!")
+                .build();
+        registrationPage.typeRegistrationForm(user);
+        registrationPage.clickCheckBoxWithActions();
+        registrationPage.clickBtnYalla();
+        Assert.assertTrue(new PopUpPage(getDriver()).isTextInPopUpMessagePresent("Must not be blank"));
+
+    }
+
 }
+
+
