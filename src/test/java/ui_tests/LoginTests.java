@@ -15,8 +15,8 @@ public class LoginTests extends ApplicationManager {
     @Test
     public void loginPositiveTest(){
         User user = User.builder()
-                .email("sima_simonova370@gmail.com")
-                .password("BSas124!")
+                .email("123qwe@gmail.com")
+                .password("123Qwerty!")
                 .build();
         HomePage homePage = new HomePage(getDriver());
         homePage.clickBtnLogin();
@@ -29,8 +29,8 @@ public class LoginTests extends ApplicationManager {
     @Test
     public void loginPositiveTest_WithPopUpPage(){
         User user = User.builder()
-                .email("sima_simonova370@gmail.com")
-                .password("BSas124!")
+                .email("123qwe@gmail.com")
+                .password("123Qwerty!")
                 .build();
         HomePage homePage = new HomePage(getDriver());
         homePage.clickBtnLogin();
@@ -44,8 +44,8 @@ public class LoginTests extends ApplicationManager {
     @Test
     public void loginNegativeTest_WrongPassword_WOSpecSymbol(){
         User user = User.builder()
-                .email("sima_simonova370@gmail.com")
-                .password("BSas1243")
+                .email("123qwe@gmail.com")
+                .password("123Qwerty")
                 .build();
         HomePage homePage = new HomePage(getDriver());
         homePage.clickBtnLogin();
@@ -55,10 +55,44 @@ public class LoginTests extends ApplicationManager {
         Assert.assertTrue(new PopUpPage(getDriver())
                 .isTextInPopUpMessagePresent("Login or Password incorrect"));
     }
+
     @Test
-    public void loginNegativeTest_WrongEmail_Empty(){
+    public void loginNegativeTest_WrongEmail_WOAt(){
         User user = User.builder()
-                .email("sima_simonova370gmail.com")
+                .email("123qwegmail.com")
+                .password("123Qwerty")
+                .build();
+        HomePage homePage = new HomePage(getDriver());
+        homePage.clickBtnLogin();
+        LoginPage loginPage = new LoginPage(getDriver());
+        loginPage.typeLoginForm(user);
+        loginPage.clickBtnYalla();
+        Assert.assertTrue(new PopUpPage(getDriver())
+                .isTextInPopUpMessagePresent("Login or Password incorrect"));
+    }
+
+    @Test  //new
+    public void loginNegativeTest_WrongEmail_Empty() {
+        User user = User.builder()
+                .email("")
+                .password("123Qwerty!")
+                .build();
+        HomePage homePage = new HomePage(getDriver());
+        homePage.clickBtnLogin();
+        LoginPage loginPage = new LoginPage(getDriver());
+        loginPage.typeLoginForm(user);
+        loginPage.clickBtnYalla();
+        softAssert.assertTrue(loginPage.isTextInErrorPresent
+                ("It's not look like email"), "validate field email");
+        System.out.println("wrong text!!");
+        softAssert.assertTrue(loginPage.isTextInErrorPresent
+                ("Password is required"), "validate field password");
+        System.out.println("right text!!");
+    }
+    @Test //new
+    public void loginNegativeTest_WrongPassword_Empty(){
+        User user = User.builder()
+                .email("123qwe@gmail.com")
                 .password("")
                 .build();
         HomePage homePage = new HomePage(getDriver());
@@ -67,11 +101,11 @@ public class LoginTests extends ApplicationManager {
         loginPage.typeLoginForm(user);
         loginPage.clickBtnYalla();
         softAssert.assertTrue(loginPage.isTextInErrorPresent
-                ("It'snot look like email"), "validate field email");
-        System.out.println("wrong text!!");
-        softAssert.assertTrue(loginPage.isTextInErrorPresent
-                ("Password is required"), "validate field password");
+                ("Email is required"), "validate field email");
         System.out.println("right text!!");
+        softAssert.assertTrue(loginPage.isTextInErrorPresent
+                ("It's not look like password"), "validate field password");
+        System.out.println("wrong text!!");
         softAssert.assertAll();
     }
 }
