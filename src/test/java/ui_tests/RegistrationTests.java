@@ -55,7 +55,7 @@ public class RegistrationTests extends ApplicationManager {
         User user = User.builder()
                 .firstName("AAA")
                 .lastName("BBB")
-                .email("wrongEmail2@gmail.com")
+                .email("wrongEmail2gmail.com")
                 .password("Password123!")
                 .build();
         registrationPage.typeRegistrationForm(user);
