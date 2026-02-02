@@ -172,7 +172,7 @@ public class RegistrationTests extends ApplicationManager {
 
     }
     @Test  //new
-    public void registrationNegativeTest_NameWithNumbersAndSymbols(){
+    public void registrationNegativeTest_NameAndLastNameWithNumbersAndSymbols(){
         User user = User.builder()
                 .firstName("Aaa123")
                 .lastName("Bbb#@!")
@@ -204,10 +204,39 @@ public class RegistrationTests extends ApplicationManager {
 
     }
     @Test  //new
+    public void registrationNegativeTest_NameIsTooLong() {
+        User user = User.builder()
+                .firstName("Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+                .lastName("Bbb")
+                .email("123qwe@gmail.com")
+                .password("123Qwerty!")
+                .build();
+        registrationPage.typeRegistrationForm(user);
+        registrationPage.clickCheckBoxWithActions();
+        registrationPage.clickBtnYalla();
+        softAssert.assertTrue(registrationPage.isTextInErrorPresent("Wrong name format"),
+                "error message: Name contains more than 70 symbols");
+    }
+    @Test  //new
+    public void registrationNegativeTest_LastNameIsBlankSpaces() {
+        User user = User.builder()
+                .firstName("Aaa")
+                .lastName("   ")
+                .email("123qwe@gmail.com")
+                .password("123Qwerty!")
+                .build();
+        registrationPage.typeRegistrationForm(user);
+        registrationPage.clickCheckBoxWithActions();
+        registrationPage.clickBtnYalla();
+        softAssert.assertTrue(registrationPage.isTextInErrorPresent("Wrong Last name format"),
+                "error message: Last name must contain english letters, not be blanked");
+    }
+
+    @Test  //new
     public void registrationNegativeTest_PasswordWithOnlyUpperCase() {
         User user = User.builder()
-                .firstName("AAA123")
-                .lastName("BBB#@!")
+                .firstName("Aaa")
+                .lastName("Bbb")
                 .email("123qwe@gmail.com")
                 .password("123QWERTY!")
                 .build();
