@@ -60,7 +60,7 @@ public class LoginTests extends ApplicationManager {
     public void loginNegativeTest_WrongEmail_WOAt(){
         User user = User.builder()
                 .email("123qwegmail.com")
-                .password("123Qwerty")
+                .password("123Qwerty!")
                 .build();
         HomePage homePage = new HomePage(getDriver());
         homePage.clickBtnLogin();
@@ -88,6 +88,25 @@ public class LoginTests extends ApplicationManager {
         softAssert.assertTrue(loginPage.isTextInErrorPresent
                 ("Password is required"), "validate field password");
         System.out.println("right text!!");
+    }
+
+    @Test  //new
+    public void loginNegativeTest_WrongEmailAndPassword_Empty() {
+        User user = User.builder()
+                .email("")
+                .password("")
+                .build();
+        HomePage homePage = new HomePage(getDriver());
+        homePage.clickBtnLogin();
+        LoginPage loginPage = new LoginPage(getDriver());
+        loginPage.typeLoginForm(user);
+        loginPage.clickBtnYalla();
+        softAssert.assertTrue(loginPage.isTextInErrorPresent
+                ("It's not look like email"), "validate field email");
+        System.out.println("wrong text!!");
+        softAssert.assertTrue(loginPage.isTextInErrorPresent
+                ("It's not look like password"), "validate field password");
+        System.out.println("wrong text!!");
     }
     @Test //new
     public void loginNegativeTest_WrongPassword_Empty(){
