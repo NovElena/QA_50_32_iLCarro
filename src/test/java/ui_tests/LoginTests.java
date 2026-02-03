@@ -83,11 +83,8 @@ public class LoginTests extends ApplicationManager {
         loginPage.typeLoginForm(user);
         loginPage.clickBtnYalla();
         softAssert.assertTrue(loginPage.isTextInErrorPresent
-                ("It's not look like email"), "validate field email");
-        System.out.println("wrong text!!");
-        softAssert.assertTrue(loginPage.isTextInErrorPresent
-                ("Password is required"), "validate field password");
-        System.out.println("right text!!");
+                ("Email is required"), "validate field email");
+        softAssert.assertAll();
     }
 
     @Test  //new
@@ -102,11 +99,11 @@ public class LoginTests extends ApplicationManager {
         loginPage.typeLoginForm(user);
         loginPage.clickBtnYalla();
         softAssert.assertTrue(loginPage.isTextInErrorPresent
-                ("It's not look like email"), "validate field email");
+                ("Email is required"), "validate field email");
         System.out.println("wrong text!!");
         softAssert.assertTrue(loginPage.isTextInErrorPresent
-                ("It's not look like password"), "validate field password");
-        System.out.println("wrong text!!");
+                ("Password is required"), "validate field password");
+        softAssert.assertAll();
     }
     @Test //new
     public void loginNegativeTest_WrongPassword_Empty(){
@@ -120,11 +117,7 @@ public class LoginTests extends ApplicationManager {
         loginPage.typeLoginForm(user);
         loginPage.clickBtnYalla();
         softAssert.assertTrue(loginPage.isTextInErrorPresent
-                ("Email is required"), "validate field email");
-        System.out.println("right text!!");
-        softAssert.assertTrue(loginPage.isTextInErrorPresent
-                ("It's not look like password"), "validate field password");
-        System.out.println("wrong text!!");
+                ("Password is required"), "validate field password");
         softAssert.assertAll();
     }
 }

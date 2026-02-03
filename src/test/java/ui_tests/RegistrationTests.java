@@ -80,7 +80,6 @@ public class RegistrationTests extends ApplicationManager {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(registrationPage.isTextInErrorPresent("Password must contain 1 uppercase letter"));
         softAssert.assertAll();
-
     }
 
     @Test
@@ -95,8 +94,8 @@ public class RegistrationTests extends ApplicationManager {
         registrationPage.clickCheckBoxWithActions();
         registrationPage.clickBtnYalla();
         Assert.assertTrue(new PopUpPage(getDriver()).isTextInPopUpMessagePresent("User already exists"));
-
     }
+
     @Test
     public void registrationNegativeTest_WithSpaceInFirstName(){
         User user = User.builder()
@@ -109,8 +108,8 @@ public class RegistrationTests extends ApplicationManager {
         registrationPage.clickCheckBoxWithActions();
         registrationPage.clickBtnYalla();
         Assert.assertTrue(new PopUpPage(getDriver()).isTextInPopUpMessagePresent("Must not be blank"));
-
     }
+
     @Test
     public void registrationNegativeTest_WithAllEmpty(){
         User user = User.builder()
@@ -126,6 +125,7 @@ public class RegistrationTests extends ApplicationManager {
         softAssert.assertTrue(registrationPage.isTextInErrorPresent("Last name is required"), "validate error message Last Name is required");
         softAssert.assertTrue(registrationPage.isTextInErrorPresent("Email is required"), "validate error message Email is required");
         softAssert.assertTrue(registrationPage.isTextInErrorPresent("Password is required"), "validate error message Password is required");
+        softAssert.assertAll();
 
     }
     @Test  //new
@@ -148,8 +148,9 @@ public class RegistrationTests extends ApplicationManager {
         softAssert.assertTrue(registrationPage.isTextInErrorPresent("Password must contain 1 uppercase letter, 1 lowercase letter," +
                         " 1 number and one special symbol of [@$#^&*!]"),
                 "error message: wrong Password format for non-English letters, Hebrew characters caused text reversal in the field");
-
+        softAssert.assertAll();
     }
+
     @Test  //new
     public void registrationNegativeTest_FieldsWithLeadingAndMiddleSpaces(){
         User user = User.builder()
@@ -169,8 +170,9 @@ public class RegistrationTests extends ApplicationManager {
                 "error message: Email contains space before @, message is duplicate on UI!");
         softAssert.assertTrue(registrationPage.isTextInErrorPresent("Password must contain 1 uppercase letter, 1 lowercase letter," +
                 " 1 number and one special symbol of [@$#^&*!]"), "error message: Password contains space, error not appeared");
-
+        softAssert.assertAll();
     }
+
     @Test  //new
     public void registrationNegativeTest_NameAndLastNameWithNumbersAndSymbols(){
         User user = User.builder()
@@ -186,8 +188,9 @@ public class RegistrationTests extends ApplicationManager {
                 "error message: Name with numbers is accept, error not appeared");
         softAssert.assertTrue(registrationPage.isTextInErrorPresent("Last name must contain only english letters"),
                 "error message: Last name with symbols is accept, error not appeared");
-
+        softAssert.assertAll();
     }
+
     @Test  //new
     public void registrationNegativeTest_ShortPassword() {
         User user = User.builder()
@@ -201,8 +204,9 @@ public class RegistrationTests extends ApplicationManager {
         registrationPage.clickBtnYalla();
         softAssert.assertTrue(registrationPage.isTextInErrorPresent("Password must contain minimum 8 symbols"),
                 "error message: Password contains less than 8 characters");
-
+        softAssert.assertAll();
     }
+
     @Test  //new
     public void registrationNegativeTest_NameIsTooLong() {
         User user = User.builder()
@@ -216,7 +220,9 @@ public class RegistrationTests extends ApplicationManager {
         registrationPage.clickBtnYalla();
         softAssert.assertTrue(registrationPage.isTextInErrorPresent("Wrong name format"),
                 "error message: Name contains more than 70 symbols");
+        softAssert.assertAll();
     }
+
     @Test  //new
     public void registrationNegativeTest_LastNameIsBlankSpaces() {
         User user = User.builder()
@@ -230,6 +236,7 @@ public class RegistrationTests extends ApplicationManager {
         registrationPage.clickBtnYalla();
         softAssert.assertTrue(registrationPage.isTextInErrorPresent("Wrong Last name format"),
                 "error message: Last name must contain english letters, not be blanked");
+        softAssert.assertAll();
     }
 
     @Test  //new
