@@ -9,11 +9,12 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.PopUpPage;
 import utils.PropertiesReader;
+import utils.RetryAnalyzer;
 
 public class LoginTests extends ApplicationManager {
     SoftAssert softAssert = new SoftAssert();
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void loginPositiveTest(){
         User user = User.builder()
                 .email(PropertiesReader.getProperty("base.properties", "login"))
@@ -30,8 +31,8 @@ public class LoginTests extends ApplicationManager {
     @Test
     public void loginPositiveTest_WithPopUpPage(){
         User user = User.builder()
-                .email("123qwe@gmail.com")
-                .password("123Qwerty!")
+                .email(PropertiesReader.getProperty("base.properties", "login"))
+                .password(PropertiesReader.getProperty("base.properties", "password"))
                 .build();
         HomePage homePage = new HomePage(getDriver());
         homePage.clickBtnLogin();
