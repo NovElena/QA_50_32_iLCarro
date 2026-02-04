@@ -70,4 +70,5 @@ public class RegistrationPage extends BasePage {
         actions.moveToElement(checkBoxAgree, -x/2, 0 ).click().perform();
     }
 
+
 }
