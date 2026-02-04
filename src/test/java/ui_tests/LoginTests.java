@@ -8,6 +8,7 @@ import org.testng.asserts.SoftAssert;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.PopUpPage;
+import utils.PropertiesReader;
 
 public class LoginTests extends ApplicationManager {
     SoftAssert softAssert = new SoftAssert();
@@ -15,8 +16,8 @@ public class LoginTests extends ApplicationManager {
     @Test
     public void loginPositiveTest(){
         User user = User.builder()
-                .email("123qwe@gmail.com")
-                .password("123Qwerty!")
+                .email(PropertiesReader.getProperty("base.properties", "login"))
+                .password(PropertiesReader.getProperty("base.properties", "password"))
                 .build();
         HomePage homePage = new HomePage(getDriver());
         homePage.clickBtnLogin();
