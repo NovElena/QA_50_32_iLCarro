@@ -122,4 +122,5 @@ public class LoginTests extends ApplicationManager {
                 ("Password is required"), "validate field password");
         softAssert.assertAll();
     }
+
 }
