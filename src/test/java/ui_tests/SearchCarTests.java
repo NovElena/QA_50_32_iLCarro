@@ -3,10 +3,13 @@ package ui_tests;
 import manager.ApplicationManager;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.HomePage;
+import utils.TestNGListener;
 
 import java.time.LocalDate;
+@Listeners(TestNGListener.class)
 
 public class SearchCarTests extends ApplicationManager {
     HomePage homePage;
@@ -69,18 +72,18 @@ public class SearchCarTests extends ApplicationManager {
     @Test
     public void searchCarNegativeTest_EndDateBeforeStartDate() {
         String city = "Rehovot";
-        LocalDate startDate = LocalDate.of(2026,3,20);
-        LocalDate endDate = LocalDate.of(2026,3,18);
-        homePage.typeSearchFormWithCalendar(city, startDate, endDate);
+        LocalDate startDate = LocalDate.of(2026,2,20);
+        LocalDate endDate = LocalDate.of(2026,2,18);
+        homePage.typeSearchFormWOJS(city, startDate, endDate);
         Assert.assertFalse(homePage.urlContains("results", 3));
     }
 
     @Test
     public void searchNegativeTest_EndAndStartDateInThePast() {
-        String city = "Rehovot";
-        LocalDate startDate = LocalDate.now().minusDays(3);
-        LocalDate endDate = LocalDate.now().minusDays(7);
-        homePage.typeSearchFormWithCalendar(city,startDate,endDate);
+        String city = "Rehovot";;
+        LocalDate startDate = LocalDate.of(2026, 2, 10);
+        LocalDate endDate = LocalDate.of(2026, 2, 12);
+        homePage.typeSearchFormWOJS(city,startDate,endDate);
         Assert.assertFalse(homePage.isBtnYallaEnabled());
     }
 
@@ -89,7 +92,7 @@ public class SearchCarTests extends ApplicationManager {
         String city = "Rehovot";
         LocalDate startDate = LocalDate.now().plusDays(1);
         LocalDate endDate = LocalDate.now().plusDays(1);
-        homePage.typeSearchFormWithCalendar(city,startDate,endDate);
+        homePage.typeSearchFormWOJS(city,startDate,endDate);
         Assert.assertFalse(homePage.urlContains("results",3));
     }
 

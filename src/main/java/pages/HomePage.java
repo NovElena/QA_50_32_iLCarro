@@ -106,6 +106,7 @@ public class HomePage extends BasePage {
         WebElement btnYear = driver.findElement(By.
                 xpath("//td[@aria-label='" + year + "']"));
         btnYear.click();
+
     }
 
     public void typeSearchFormWithCalendar
