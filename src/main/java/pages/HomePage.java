@@ -79,6 +79,7 @@ public class HomePage extends BasePage {
         js.executeScript("document.querySelector(\"button[type='submit']\")" +
                 ".removeAttribute(\"disabled\")");
         //btnYalla.click();
+        clickWait(btnYalla, 3);
 
     }
 
