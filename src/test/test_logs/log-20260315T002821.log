@@ -1,0 +1,13 @@
+00:28:21.719 [Test worker] INFO  manager.ApplicationManager - Start testing 2026-03-15 : 00:28:21.719005700
+00:28:24.609 [Test worker] INFO  utils.WDListener - before Get https://ilcarro.web.app/search
+00:28:31.311 [Test worker] INFO  utils.WDListener - Open page https://ilcarro.web.app/search
+00:28:31.449 [Test worker] INFO  utils.WDListener - Before click a
+00:28:31.715 [Test worker] INFO  utils.WDListener - After click to element --> a
+00:28:32.238 [Test worker] INFO  utils.WDListener - Before click button
+00:28:32.449 [Test worker] INFO  utils.WDListener - After click to element --> button
+00:28:32.498 [Test worker] ERROR utils.WDListener - created exception java.lang.reflect.InvocationTargetException
+00:28:32.518 [Test worker] ERROR utils.WDListener - created exception java.lang.reflect.InvocationTargetException
+00:28:32.818 [Test worker] ERROR utils.WDListener - created exception java.lang.reflect.InvocationTargetException
+00:28:33.099 [Test worker] ERROR utils.WDListener - created exception java.lang.reflect.InvocationTargetException
+00:28:33.380 [Test worker] ERROR utils.WDListener - created exception java.lang.reflect.InvocationTargetException
+00:28:43.048 [Test worker] INFO  manager.ApplicationManager - Stop testing 2026-03-15 : 00:28:43.048026700

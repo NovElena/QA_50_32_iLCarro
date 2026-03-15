@@ -1,0 +1,13 @@
+00:29:44.366 [Test worker] INFO  manager.ApplicationManager - Start testing 2026-03-15 : 00:29:44.361892500
+00:29:47.026 [Test worker] INFO  manager.ApplicationManager - start test loginPositiveTest with user User(email=123qwe@gmail.com, password=123Qwerty!, firstName=null, lastName=null)
+00:29:47.042 [Test worker] INFO  utils.WDListener - before Get https://ilcarro.web.app/search
+00:29:49.627 [Test worker] INFO  utils.WDListener - Open page https://ilcarro.web.app/search
+00:29:49.767 [Test worker] INFO  utils.WDListener - Before click a
+00:29:50.016 [Test worker] INFO  utils.WDListener - After click to element --> a
+00:29:50.540 [Test worker] INFO  utils.WDListener - Before click button
+00:29:50.670 [Test worker] INFO  utils.WDListener - After click to element --> button
+00:29:50.719 [Test worker] ERROR utils.WDListener - created exception java.lang.reflect.InvocationTargetException
+00:29:50.747 [Test worker] ERROR utils.WDListener - created exception java.lang.reflect.InvocationTargetException
+00:29:51.028 [Test worker] ERROR utils.WDListener - created exception java.lang.reflect.InvocationTargetException
+00:29:51.352 [Test worker] ERROR utils.WDListener - created exception java.lang.reflect.InvocationTargetException
+00:29:51.736 [Test worker] INFO  manager.ApplicationManager - Stop testing 2026-03-15 : 00:29:51.736399700

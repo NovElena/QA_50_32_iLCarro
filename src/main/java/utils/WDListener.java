@@ -47,26 +47,31 @@ public class WDListener implements WebDriverListener {
     @Override
     public void afterQuit(WebDriver driver) {
         WebDriverListener.super.afterQuit(driver);
+        logger.info("browser quit");
     }
 
     @Override
     public void afterFindElement(WebDriver driver, By locator, WebElement result) {
         WebDriverListener.super.afterFindElement(driver, locator, result);
+        logger.info("Find element with locator --> " + locator.toString());
     }
 
     @Override
     public void afterExecuteScript(WebDriver driver, String script, Object[] args, Object result) {
         WebDriverListener.super.afterExecuteScript(driver, script, args, result);
+        logger.info("execute JScript --> " + script);
     }
 
     @Override
     public void afterSendKeys(WebElement element, CharSequence... keysToSend) {
         WebDriverListener.super.afterSendKeys(element, keysToSend);
+        logger.info("use SendKeys to element {} type {}", element.getTagName(), keysToSend);
     }
 
     @Override
     public void afterMaximize(WebDriver.Window window) {
         WebDriverListener.super.afterMaximize(window);
+        logger.info("After maximize " + window.getSize());
     }
 
 }
