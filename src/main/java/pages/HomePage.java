@@ -1,14 +1,13 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 import java.time.LocalDate;
+
+import org.openqa.selenium.Keys;
 
 import static utils.PropertiesReader.*;
 
@@ -79,7 +78,7 @@ public class HomePage extends BasePage {
         js.executeScript("document.querySelector(\"button[type='submit']\")" +
                 ".removeAttribute(\"disabled\")");
         //btnYalla.click();
-        clickWait(btnYalla, 3);
+        //clickWait(btnYalla, 3);
 
     }
 
@@ -121,7 +120,7 @@ public class HomePage extends BasePage {
         //String day = Integer.toString(date.getDayOfMonth());
         String day = String.valueOf(date.getDayOfMonth());
         WebElement btnDay = driver.findElement(By.
-                xpath("//td[@aria-label='" + month + " " + day + " " + year + "']"));
+                xpath("//td[@aria-label='" + month + " " + day + ", " + year + "']"));
         btnDay.click();
 
     }
@@ -133,6 +132,7 @@ public class HomePage extends BasePage {
         //System.out.println(startDate.getMonth());
         typeCalendar(startDate);
         typeCalendar(endDate);
+        inputDates.sendKeys(Keys.ESCAPE);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("document.querySelector(\"button[type='submit']\")" +
                 ".removeAttribute(\"disabled\")");

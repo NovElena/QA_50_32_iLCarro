@@ -28,7 +28,7 @@ public class WDListener implements WebDriverListener {
     @Override
     public void afterGet(WebDriver driver, String url) {
         WebDriverListener.super.afterGet(driver, url);
-        logger.info("Open page "+ url);
+        logger.info("Open page " + url);
 
     }
 

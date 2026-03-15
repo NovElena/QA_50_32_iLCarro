@@ -25,9 +25,9 @@ public class SearchCarTests extends ApplicationManager {
     public void searchCarPositiveTest() {
         String city = "Rehovot";
         LocalDate startDate = LocalDate
-                .of(2026, 3, 12);
+                .of(2026, 3, 25);
         LocalDate endDate = LocalDate
-                .of(2026, 3, 22);
+                .of(2026, 3, 30);
         homePage.typeSearchForm(city, startDate, endDate);
         homePage.clickBtnYalla();
         Assert.assertTrue(homePage.urlContains
@@ -140,8 +140,8 @@ public class SearchCarTests extends ApplicationManager {
     @Test(expectedExceptions = java.time.DateTimeException.class)
     public void searchCarNegativeTest_DateNotValid() {
         String city = "Rehovot";
-        LocalDate startDate = LocalDate.of(2026, 3, 30);
-        LocalDate endDate = LocalDate.of(2026, 3, 22);
+        LocalDate startDate = LocalDate.of(2026, 2, 30);
+        LocalDate endDate = LocalDate.of(2026, 2, 22);
         homePage.typeSearchForm(city, startDate, endDate);
         homePage.clickBtnYalla();
 
