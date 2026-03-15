@@ -99,6 +99,11 @@ public class HomePage extends BasePage {
                 + endDate.getYear();
         inputDates.sendKeys(dates);
     }
+    private String createMonth(String month){
+        StringBuilder res = new StringBuilder();
+        return res.append(month.substring(0, 1).toUpperCase())
+                .append(month.substring(1).toLowerCase()).toString();
+    }
 
     private void typeCalendar(LocalDate date) {
         btnYearCalendar.click();
@@ -107,6 +112,17 @@ public class HomePage extends BasePage {
         WebElement btnYear = driver.findElement(By.
                 xpath("//td[@aria-label='" + year + "']"));
         btnYear.click();
+        //td[@aria-label='March 2026']
+        String month = createMonth(date.getMonth().toString());
+        WebElement btnMonth = driver.findElement(By.
+                xpath("//td[@aria-label='" + month + " " + year + "']"));
+        btnMonth.click();
+        //td[@aria-label='March 18, 2026']
+        //String day = Integer.toString(date.getDayOfMonth());
+        String day = String.valueOf(date.getDayOfMonth());
+        WebElement btnDay = driver.findElement(By.
+                xpath("//td[@aria-label='" + month + " " + day + " " + year + "']"));
+        btnDay.click();
 
     }
 
@@ -114,7 +130,13 @@ public class HomePage extends BasePage {
             (String city, LocalDate startDate, LocalDate endDate) {
         inputCity.sendKeys(city);
         inputDates.click();
+        //System.out.println(startDate.getMonth());
         typeCalendar(startDate);
+        typeCalendar(endDate);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("document.querySelector(\"button[type='submit']\")" +
+                ".removeAttribute(\"disabled\")");
+
 
     }
 

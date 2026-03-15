@@ -42,9 +42,9 @@ public class SearchCarTests extends ApplicationManager {
         LocalDate endDate = LocalDate
                 .of(2026, 3, 22);
         homePage.typeSearchFormWithCalendar(city, startDate, endDate);
-        //homePage.clickBtnYalla();
-        // Assert.assertTrue(homePage.urlContains
-        //         ("results", 5));
+        homePage.clickBtnYalla();
+        Assert.assertTrue(homePage.urlContains
+                ("results", 5));
     }
 
     @Test(expectedExceptions = org.openqa.selenium.
