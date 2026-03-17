@@ -22,6 +22,12 @@ public class LoginPage extends BasePage {
     WebElement btnYalla;
     @FindBy(xpath = "//h2[text()='Logged in success']")
     WebElement popUpSuccessfulLogin;
+    @FindBy(xpath = "//button[text()='Ok']")
+    WebElement buttonOk;
+
+    public void clickBtnOk() {
+        clickWait(buttonOk, 3);
+    }
 
     public void typeLoginForm(User user) {
         inputEmail.sendKeys(user.getEmail());

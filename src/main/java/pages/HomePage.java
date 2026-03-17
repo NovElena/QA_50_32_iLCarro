@@ -1,15 +1,22 @@
 package pages;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
-
-import java.time.LocalDate;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.enums.FooterMenuItem;
 import org.openqa.selenium.Keys;
 
+import java.time.Duration;
+import java.time.LocalDate;
+
 import static utils.PropertiesReader.*;
+
 
 //public class HomePage extends BasePage {
 //    public HomePage(WebDriver driver) {
@@ -138,6 +145,11 @@ public class HomePage extends BasePage {
                 ".removeAttribute(\"disabled\")");
 
 
+    }
+    public boolean clickIconFooter(FooterMenuItem item, String title){
+        driver.findElement(By.xpath(item.getLocator())).click();
+        return new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.titleContains(title));
     }
 
     public boolean isBtnYallaEnabled(){
