@@ -110,6 +110,7 @@ public class LoginTests extends ApplicationManager {
                 ("Password is required"), "validate field password");
         softAssert.assertAll();
     }
+
     @Test //new
     public void loginNegativeTest_WrongPassword_Empty(){
         User user = User.builder()

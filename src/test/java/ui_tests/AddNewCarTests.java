@@ -20,6 +20,7 @@ public class AddNewCarTests extends ApplicationManager {
     LoginPage loginPage;
     LetTheCarWorkPage letTheCarWorkPage;
 
+
     @BeforeMethod(alwaysRun = true)
     public void openLetTheCarWorkPage() {
         User user = User.builder()

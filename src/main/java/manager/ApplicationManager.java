@@ -19,10 +19,11 @@ public class ApplicationManager {
     private WebDriver driver;
 
     public WebDriver getDriver() {
+
         return driver;
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setup() {
         logger.info("Start testing " + LocalDate.now() +
                 " : " + LocalTime.now());
@@ -34,7 +35,7 @@ public class ApplicationManager {
 
     }
 
-    @AfterMethod(enabled = true)
+    @AfterMethod(enabled = true, alwaysRun = true)
     public void tearDown() {
         logger.info("Stop testing " + LocalDate.now() +
                 " : " + LocalTime.now());

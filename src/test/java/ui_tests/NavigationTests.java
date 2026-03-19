@@ -7,6 +7,7 @@ import pages.HomePage;
 import utils.enums.FooterMenuItem;
 
 public class NavigationTests extends ApplicationManager {
+
     @Test(groups = "smoke")
     public void iconFacebookNavigationTest(){
         Assert.assertTrue(new HomePage(getDriver()).clickIconFooter

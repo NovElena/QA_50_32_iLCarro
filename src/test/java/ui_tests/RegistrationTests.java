@@ -254,7 +254,6 @@ public class RegistrationTests extends ApplicationManager {
                 "error message: Password not contains lowercase letters");
         softAssert.assertAll();
     }
-
 }
 
 
