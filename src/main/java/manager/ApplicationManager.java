@@ -27,12 +27,13 @@ public class ApplicationManager {
     public void setup() {
         logger.info("Start testing " + LocalDate.now() +
                 " : " + LocalTime.now());
+        System.setProperty("webdriver.chrome.driver",
+                "C:\\AutoProjects\\QA_50_32_iLCarro\\tools\\chromedriver-win64\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         WebDriverListener webDriverListener = new WDListener();
         driver = new EventFiringDecorator<>(webDriverListener)
                 .decorate(driver);
-
     }
 
     @AfterMethod(enabled = true, alwaysRun = true)

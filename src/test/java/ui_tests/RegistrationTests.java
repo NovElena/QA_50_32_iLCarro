@@ -131,10 +131,10 @@ public class RegistrationTests extends ApplicationManager {
     @Test  //new
     public void registrationNegativeTest_WihNonEnglishLetters(){
         User user = User.builder()
-                .firstName("Аaa")
-                .lastName("בבב")
-                .email("123йцу@пьфшд.сщь")
-                .password("123קראט!")
+                .firstName("\u0410aa")
+                .lastName("\u05D1\u05D1\u05D1")
+                .email("123\u0439\u0446\u0443@\u043F\u044C\u0444\u0448\u0434.\u0441\u0449\u044C")
+                .password("123\u05E7\u05E8\u05D0\u05D8!")
                 .build();
         registrationPage.typeRegistrationForm(user);
         registrationPage.setCheckBoxAgreeTermsOfUse();

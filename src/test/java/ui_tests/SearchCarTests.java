@@ -25,10 +25,8 @@ public class SearchCarTests extends ApplicationManager {
     @Test
     public void searchCarPositiveTest() {
         String city = "Rehovot";
-        LocalDate startDate = LocalDate
-                .of(2026, 3, 25);
-        LocalDate endDate = LocalDate
-                .of(2026, 3, 30);
+        LocalDate startDate = LocalDate.now().plusDays(2);
+        LocalDate endDate = LocalDate.now().plusDays(7);
         homePage.typeSearchForm(city, startDate, endDate);
         homePage.clickBtnYalla();
         Assert.assertTrue(homePage.urlContains
@@ -38,10 +36,8 @@ public class SearchCarTests extends ApplicationManager {
     @Test
     public void searchCarPositiveTestWithCalendar() {
         String city = "Rehovot";
-        LocalDate startDate = LocalDate
-                .of(2026, 3, 12);
-        LocalDate endDate = LocalDate
-                .of(2026, 3, 22);
+        LocalDate startDate = LocalDate.now().plusDays(3);
+        LocalDate endDate = LocalDate.now().plusDays(8);
         homePage.typeSearchFormWithCalendar(city, startDate, endDate);
         homePage.clickBtnYalla();
         Assert.assertTrue(homePage.urlContains

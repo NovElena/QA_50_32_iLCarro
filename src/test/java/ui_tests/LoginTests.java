@@ -72,8 +72,7 @@ public class LoginTests extends ApplicationManager {
         LoginPage loginPage = new LoginPage(getDriver());
         loginPage.typeLoginForm(user);
         loginPage.clickBtnYalla();
-        Assert.assertTrue(new PopUpPage(getDriver())
-                .isTextInPopUpMessagePresent("Login or Password incorrect"));
+        Assert.assertTrue(loginPage.getEmailValidationMessage().contains("@"));
     }
 
     @Test  //new

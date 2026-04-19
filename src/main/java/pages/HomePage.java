@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -43,10 +44,24 @@ import static utils.PropertiesReader.*;
 public class HomePage extends BasePage {
     public HomePage(WebDriver driver) {
         setDriver(driver);
-        //driver.get("https://ilcarro.web.app/search");
-        driver.get(getProperty("base.properties", "baseUrl"));
+        openHomePage(driver);
         PageFactory.initElements(new AjaxElementLocatorFactory
                 (driver, 10), this);
+    }
+
+    private void openHomePage(WebDriver driver) {
+        String baseUrl = getProperty("base.properties", "baseUrl");
+        for (int attempt = 1; attempt <= 3; attempt++) {
+            try {
+                driver.get(baseUrl);
+                return;
+            } catch (WebDriverException e) {
+                if (attempt == 3 || !e.getMessage().contains("ERR_CONNECTION_RESET")) {
+                    throw e;
+                }
+                pause(1);
+            }
+        }
     }
 
     @FindBy(xpath = "//a[text()=' Log in ']")

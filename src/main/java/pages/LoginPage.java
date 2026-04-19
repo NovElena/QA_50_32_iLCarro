@@ -18,7 +18,7 @@ public class LoginPage extends BasePage {
     WebElement inputEmail;
     @FindBy(id = "password")
     WebElement inputPassword;
-    @FindBy(xpath = "//button[text()='Y’alla!']")
+    @FindBy(xpath = "//button[@type='submit']")
     WebElement btnYalla;
     @FindBy(xpath = "//h2[text()='Logged in success']")
     WebElement popUpSuccessfulLogin;
@@ -34,11 +34,15 @@ public class LoginPage extends BasePage {
         inputPassword.sendKeys(user.getPassword());
     }
 
-    public void clickBtnYalla(){
+    public void clickBtnYalla() {
         btnYalla.click();
     }
 
-    public boolean isLoggedInDisplayed(){
+    public String getEmailValidationMessage() {
+        return inputEmail.getAttribute("validationMessage");
+    }
+
+    public boolean isLoggedInDisplayed() {
         return isElementDisplayed(popUpSuccessfulLogin);
     }
 }
